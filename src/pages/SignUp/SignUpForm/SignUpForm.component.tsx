@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { compose } from "recompose";
@@ -9,13 +10,18 @@ import {
   withNextInputAutoFocusForm,
   withNextInputAutoFocusInput
 } from "react-native-formik";
+import { SignUpFormType } from "../SignUp.type";
 
-type PropsType = any;
+type PropsType = {
+  onSubmit: (values: SignUpFormType) => void;
+};
 
 const MyInput = compose(
   handleTextInput,
   withNextInputAutoFocusInput
+  // @ts-ignore fix myInput with compose
 )(Input);
+
 const Form = withNextInputAutoFocusForm(View);
 
 const validationSchema = Yup.object().shape({
@@ -54,7 +60,12 @@ const styles = StyleSheet.create({
 
 export const SignUpForm = (props: PropsType) => (
   <Formik
-    initialValues={{}}
+    initialValues={{
+      user: "",
+      email: "",
+      password: "",
+      passwordConfirmation: ""
+    }}
     onSubmit={values => props.onSubmit(values)}
     validationSchema={validationSchema}
     render={props => {
@@ -63,13 +74,24 @@ export const SignUpForm = (props: PropsType) => (
           <View style={styles.titleContainer}>
             <Text style={styles.titleText}>Créer un compte</Text>
             <View>
-              <MyInput label="Nom d'utilisateur" name="user" type="user" />
-            </View>
-            <View>
-              <MyInput label="Email" name="email" type="email" />
+              <MyInput
+                // @ts-ignore fix myInput with compose
+                label="Nom d'utilisateur"
+                name="user"
+                type="user"
+              />
             </View>
             <View>
               <MyInput
+              // @ts-ignore fix myInput with compose
+                label="Email"
+                name="email"
+                type="email"
+              />
+            </View>
+            <View>
+              <MyInput
+                // @ts-ignore fix myInput with compose
                 label="Mot de passe"
                 name="password"
                 type="password"
@@ -78,6 +100,7 @@ export const SignUpForm = (props: PropsType) => (
             </View>
             <View>
               <MyInput
+                // @ts-ignore fix myInput with compose
                 label="Confirmer le mot de passe"
                 name="passwordConfirmation"
                 type="passwordConfirmation"
@@ -85,8 +108,6 @@ export const SignUpForm = (props: PropsType) => (
               />
             </View>
             <View style={styles.buttonContainer}>
-              {/* 
-              // @ts-ignore */}
               <TouchableOpacity onPress={props.handleSubmit} title="SUBMIT">
                 <Text style={styles.buttonText}>Valider</Text>
               </TouchableOpacity>

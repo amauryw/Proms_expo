@@ -7,7 +7,7 @@ type PropsType = {
   amount: string;
 };
 
-export const OperationLine = (props: PropsType) => {
+export function OperationLine(props: PropsType) {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.operationContainer}>
@@ -19,7 +19,7 @@ export const OperationLine = (props: PropsType) => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -51,5 +51,3 @@ const styles = StyleSheet.create({
     fontSize: 13
   }
 });
-
-export default OperationLine;

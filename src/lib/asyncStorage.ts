@@ -25,7 +25,7 @@ export const setItem = async (
   }
 };
 
-type AsyncStorageReturn = UserType | string | null;
+type AsyncStorageReturn = UserType | null;
 
 export const getItem = async <T extends AsyncStorageReturn>(
   key: string,
@@ -33,9 +33,6 @@ export const getItem = async <T extends AsyncStorageReturn>(
 ): Promise<T> => {
   try {
     switch (typeExemple) {
-      case "string":
-        const stringValue = await AsyncStorage.getItem(key);
-        return stringValue;
       case "object":
         const ObjectValue = await AsyncStorage.getItem(key);
         return JSON.parse(ObjectValue);

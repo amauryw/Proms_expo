@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
+import { UserType } from '../../../../modules/me/me.type';
 
 type PropsType = {
   title: string;
-  value: string;
+  value: keyof UserType;
 };
 
 const styles = StyleSheet.create({

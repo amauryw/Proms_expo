@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { setItem, removeItem } from "../../lib/asyncStorage";
 import { postLogin } from "./me.api";
-import { MyContext } from "./me.context";
+import { MyContext, IMyStore } from "./me.context";
 import { UserType } from "./me.type";
 
 export const useMyStore = () => {
@@ -12,15 +12,15 @@ export const useMyStore = () => {
   const hasErrored = state.hasErrored;
 
   const setMe = async (newMe: UserType | null) => {
-    setState(oldState => ({ ...oldState, me: newMe }));
+    setState((oldState: IMyStore) => ({ ...oldState, me: newMe }));
   };
 
   const setLoading = (value: boolean) => {
-    setState(oldState => ({ ...oldState, isLoading: value }));
+    setState((oldState: IMyStore) => ({ ...oldState, isLoading: value }));
   };
 
   const setHasErrored = (value: boolean) => {
-    setState(oldState => ({ ...oldState, hasErrored: value }));
+    setState((oldState: IMyStore) => ({ ...oldState, hasErrored: value }));
   };
 
   const login = async (name: string, password: string): Promise<void> => {

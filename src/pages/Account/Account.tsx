@@ -1,4 +1,3 @@
-// @flow
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, Dimensions, ScrollView } from "react-native";
 import { useMyStore } from "../../modules/me/me.hooks";
@@ -34,8 +33,11 @@ const scaleY = scaleLinear()
   .range([height - verticalPadding, verticalPadding]);
 const line = d3.shape
   .line()
+  // @ts-ignore
   .x(d => scaleX(d.x))
+  // @ts-ignore
   .y(d => scaleY(d.y))
+  // @ts-ignore
   .curve(d3.shape.curveBasis)(data);
 
 export const Account = (props: PropsType) => {

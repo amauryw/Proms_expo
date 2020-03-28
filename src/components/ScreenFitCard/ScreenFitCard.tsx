@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { View, StyleSheet, Dimensions } from "react-native";
 import appStyle from "../../style/appStyle";
@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export const ScreenFitCard = props => {
+export const ScreenFitCard = (props: { children: ReactNode }) => {
   return <View style={styles.card}>{props.children}</View>;
 };

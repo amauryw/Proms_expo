@@ -1,19 +1,19 @@
 import React, { createContext, useState, ElementType, ReactNode } from "react";
 import { UserType } from "./me.type";
 
-type StateType = {
+export interface IMyStore {
   me: null | UserType;
   isLoading: boolean;
   hasErrored: boolean;
 };
-const initialState: StateType = {
+const initialState: IMyStore = {
   me: null,
   isLoading: false,
   hasErrored: false
 };
 
 export const MyContext = createContext<{
-  state: StateType;
+  state: IMyStore;
   setState: any;
 }>({
   state: initialState,
