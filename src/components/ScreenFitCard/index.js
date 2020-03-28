@@ -1,0 +1,1 @@
+export { ScreenFitCard } from "./ScreenFitCard";
