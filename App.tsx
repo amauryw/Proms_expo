@@ -7,7 +7,7 @@ import { StatusBar } from "react-native";
 function App() {
   return (
     <>
-      <StatusBar barStyle="light-content" />
+      <StatusBar />
       <RootToaster defaultMessage="Sal's" defaultColor="red" />
       <MyContextProvider>
         <Navigation />
