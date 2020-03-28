@@ -82,7 +82,7 @@ export function SignIn(props: PropsType) {
 
   return (
     <View style={styles.areaView}>
-      {/* 
+      {/*
       // @ts-ignore */}
       <SafeAreaView />
       <ScreenFitCard>

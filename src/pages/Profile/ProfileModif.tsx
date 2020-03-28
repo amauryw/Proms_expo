@@ -17,7 +17,7 @@ const ChampList = [
 export function ProfileModif(props: PropsType) {
   return (
     <View style={styles.mainContainer}>
-      {/* 
+      {/*
       // @ts-ignore */}
       <SafeAreaView />
       <View style={styles.headContainer}>

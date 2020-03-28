@@ -45,7 +45,7 @@ export const Account = (props: PropsType) => {
   const { me } = useMyStore();
   return (
     <View style={styles.container}>
-      {/* 
+      {/*
       // @ts-ignore */}
       <SafeAreaView />
       <View style={styles.welcomeContainer}>
