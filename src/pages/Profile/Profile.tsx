@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { UserField } from "./components/userField";
 import { NavigationProp } from "@react-navigation/native";
 import { useMyStore } from "../../modules/me";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ChampList = [
   { title: "Nums", apiValue: "nums" },
@@ -18,46 +19,48 @@ export function Profile(props: PropsType) {
   const { me, logout } = useMyStore();
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.headContainer}>
-        <Text style={styles.headTitle}>
-          {me.nom} {me.prenom}
-        </Text>
-      </View>
-      <View style={styles.profileContainer}>
-        <View style={styles.userContainer_1}>
-          <View style={styles.bucqueContainer}>
-            <UserField title="Bucque" value={me.bucque} />
-          </View>
-          <View style={styles.modifContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                props.navigation.navigate("profilemodif");
-              }}
-            >
-              <Text style={styles.modifButtonText}>Modifier</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.userContainer_2}>
-          {ChampList.map(item => {
-            return <UserField title={item.title} value={me[item.apiValue]} />;
-          })}
-        </View>
-      </View>
-      <View style={styles.logoutContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            logout();
-          }}
-          style={styles.logoutButton}
-        >
-          <Text style={{ fontWeight: "bold", color: "white", fontSize: 18 }}>
-            Se déconnecter
+    <SafeAreaView>
+      <View style={styles.mainContainer}>
+        <View style={styles.headContainer}>
+          <Text style={styles.headTitle}>
+            {me.nom} {me.prenom}
           </Text>
-        </TouchableOpacity>
+        </View>
+        <View style={styles.profileContainer}>
+          <View style={styles.userContainer_1}>
+            <View style={styles.bucqueContainer}>
+              <UserField title="Bucque" value={me.bucque} />
+            </View>
+            <View style={styles.modifContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  props.navigation.navigate("profilemodif");
+                }}
+              >
+                <Text style={styles.modifButtonText}>Modifier</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.userContainer_2}>
+            {ChampList.map(item => {
+              return <UserField title={item.title} value={me[item.apiValue]} />;
+            })}
+          </View>
+        </View>
+        <View style={styles.logoutContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              logout();
+            }}
+            style={styles.logoutButton}
+          >
+            <Text style={{ fontWeight: "bold", color: "white", fontSize: 18 }}>
+              Se déconnecter
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

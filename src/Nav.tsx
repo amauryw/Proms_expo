@@ -8,6 +8,7 @@ import isNil from "lodash/isNil";
 import { useMyStore } from "./modules/me/me.hooks";
 import { UserType } from "./modules/me/me.type";
 import { AppLoading } from "./pages/AppLoading";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Tabs } from "./pages/Tabs";
 
 const Stack = createStackNavigator();
@@ -26,26 +27,28 @@ export function Navigation() {
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        {!isAsyncAuthDone ? (
-          <Stack.Screen name="apploading" component={AppLoading} />
-        ) : isNil(me) ? (
-          <>
-            <Stack.Screen
-              name="SignIn"
-              component={SignIn}
-              options={{
-                title: "Sign in",
-                animationTypeForReplace: "pop"
-              }}
-            />
-            <Stack.Screen name="SignUp" component={SignUp} />
-          </>
-        ) : (
-          <Stack.Screen name="tab" component={Tabs} />
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator headerMode="none">
+          {!isAsyncAuthDone ? (
+            <Stack.Screen name="apploading" component={AppLoading} />
+          ) : isNil(me) ? (
+            <>
+              <Stack.Screen
+                name="SignIn"
+                component={SignIn}
+                options={{
+                  title: "Sign in",
+                  animationTypeForReplace: "pop"
+                }}
+              />
+              <Stack.Screen name="SignUp" component={SignUp} />
+            </>
+          ) : (
+            <Stack.Screen name="tab" component={Tabs} />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { UserFieldModif } from "./components/userFieldModif/userFieldModif.component";
 import { NavigationProp } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type PropsType = {
   navigation: NavigationProp<any>;
@@ -15,33 +16,34 @@ const ChampList = [
 ];
 export function ProfileModif(props: PropsType) {
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.headContainer}>
-        <Text style={styles.headTitle}>NOM Prénom</Text>
+    <SafeAreaView>
+      <View style={styles.mainContainer}>
+        <View style={styles.headContainer}>
+          <Text style={styles.headTitle}>NOM Prénom</Text>
+        </View>
+        <View style={styles.validateContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.goBack();
+            }}
+          >
+            <Text style={styles.cancelButtonText}>Annuler</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.goBack();
+            }}
+          >
+            <Text style={styles.validateButtonText}>OK</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.profileContainer}>
+          {ChampList.map(item => {
+            return <UserFieldModif title={item.title} value={item.value} />;
+          })}
+        </View>
       </View>
-      <View style={styles.validateContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.goBack();
-          }}
-        >
-          <Text style={styles.cancelButtonText}>Annuler</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.goBack();
-
-          }}
-        >
-          <Text style={styles.validateButtonText}>OK</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.profileContainer}>
-        {ChampList.map(item => {
-          return <UserFieldModif title={item.title} value={item.value} />;
-        })}
-      </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

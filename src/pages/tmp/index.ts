@@ -1,1 +1,0 @@
-export { Tmp } from "./tmp";

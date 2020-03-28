@@ -7,7 +7,7 @@ import {
   ActivityIndicator
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import SafeAreaView from "react-native-safe-area-view";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { toaster } from "../../lib/toaster";
 import { Input } from "../../components/Input";
 import { ScreenFitCard } from "../../components/ScreenFitCard";
