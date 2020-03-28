@@ -7,13 +7,14 @@ import { EventCard } from "../../components/EventCard";
 export function Newsfeed() {
   const events = getEvents();
   return (
-    <SafeAreaView>
-      <ScrollView>
-        {events.map(elem => (
-          // @ts-ignore
-          <EventCard key={`${elem.id}`} event={elem} />
-        ))}
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView style={{ flex: 1 }}>
+      {/* 
+      // @ts-ignore */}
+      <SafeAreaView />
+      {events.map(elem => (
+        // @ts-ignore
+        <EventCard key={`${elem.id}`} event={elem} />
+      ))}
+    </ScrollView>
   );
 }

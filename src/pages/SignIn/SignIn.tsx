@@ -81,7 +81,10 @@ export function SignIn(props: PropsType) {
   };
 
   return (
-    <SafeAreaView style={styles.areaView}>
+    <View style={styles.areaView}>
+      {/* 
+      // @ts-ignore */}
+      <SafeAreaView />
       <ScreenFitCard>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>Hello!</Text>
@@ -117,6 +120,6 @@ export function SignIn(props: PropsType) {
           </TouchableOpacity>
         </View>
       </ScreenFitCard>
-    </SafeAreaView>
+    </View>
   );
 }
