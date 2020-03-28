@@ -44,7 +44,10 @@ const line = d3.shape
 export const Account = (props: PropsType) => {
   const { me } = useMyStore();
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      {/* 
+      // @ts-ignore */}
+      <SafeAreaView />
       <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeText}>Sal's {me.bucque}!</Text>
       </View>
@@ -88,7 +91,7 @@ export const Account = (props: PropsType) => {
           amount="-122,5€"
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

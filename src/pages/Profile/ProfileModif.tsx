@@ -16,34 +16,35 @@ const ChampList = [
 ];
 export function ProfileModif(props: PropsType) {
   return (
-    <SafeAreaView>
-      <View style={styles.mainContainer}>
-        <View style={styles.headContainer}>
-          <Text style={styles.headTitle}>NOM Prénom</Text>
-        </View>
-        <View style={styles.validateContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.goBack();
-            }}
-          >
-            <Text style={styles.cancelButtonText}>Annuler</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.goBack();
-            }}
-          >
-            <Text style={styles.validateButtonText}>OK</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.profileContainer}>
-          {ChampList.map(item => {
-            return <UserFieldModif title={item.title} value={item.value} />;
-          })}
-        </View>
+    <View style={styles.mainContainer}>
+      {/* 
+      // @ts-ignore */}
+      <SafeAreaView />
+      <View style={styles.headContainer}>
+        <Text style={styles.headTitle}>NOM Prénom</Text>
       </View>
-    </SafeAreaView>
+      <View style={styles.validateContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.goBack();
+          }}
+        >
+          <Text style={styles.cancelButtonText}>Annuler</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.goBack();
+          }}
+        >
+          <Text style={styles.validateButtonText}>OK</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.profileContainer}>
+        {ChampList.map(item => {
+          return <UserFieldModif title={item.title} value={item.value} />;
+        })}
+      </View>
+    </View>
   );
 }
 
