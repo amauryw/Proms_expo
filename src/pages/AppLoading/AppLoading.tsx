@@ -6,7 +6,6 @@ export function AppLoading() {
   return (
     <CenteredPage>
       <ActivityIndicator />
-      <Text>Chargement des données stockées dans le mobile</Text>
       <StatusBar barStyle="default" />
     </CenteredPage>
   );

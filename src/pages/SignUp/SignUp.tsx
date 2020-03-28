@@ -6,9 +6,10 @@ import { SignUpFormType } from "./SignUp.type";
 import { ReturnButton } from "../../components/returnButton/ReturnButton";
 import { ScreenFitCard } from "../../components/ScreenFitCard";
 import appStyle from "../../style/appStyle";
+import { NavigationProp } from "@react-navigation/native";
 
 type PropsType = {
-  navigation: NavigationType;
+  navigation: NavigationProp<any>;
 };
 
 const styles = StyleSheet.create({
@@ -19,9 +20,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export function SignUp({ navigation }) {
+export function SignUp(props: PropsType) {
   const goBack = () => {
-    navigation.navigate("SignIn");
+    props.navigation.navigate("SignIn");
   };
 
   const onCreateAccountPress = (values: SignUpFormType) => {

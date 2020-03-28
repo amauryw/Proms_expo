@@ -3,8 +3,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Account } from "../Account";
 import { Newsfeed } from "../Newsfeed";
+import { ProfileNavigator } from "../Profile";
 import { renderTabIcon } from "../../components/Icon";
 import appStyle from "../../style/appStyle";
+import { AppLoading } from "../AppLoading";
+import isNil from "lodash/isNil";
+import { useMyStore } from "../../modules/me";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,6 +16,8 @@ navigationOptions: {
 }
 
 export function Tabs() {
+  const { me } = useMyStore();
+  if (isNil(me)) return <AppLoading />;
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -37,6 +43,7 @@ export function Tabs() {
     >
       <Tab.Screen name="account" component={Account} />
       <Tab.Screen name="newsfeed" component={Newsfeed} />
+      <Tab.Screen name="profile" component={ProfileNavigator} />
     </Tab.Navigator>
   );
 }

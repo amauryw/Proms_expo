@@ -6,13 +6,18 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from "react-native";
-import { toaster } from "../../lib/toaster";
+import { NavigationProp } from "@react-navigation/native";
 import SafeAreaView from "react-native-safe-area-view";
+import { toaster } from "../../lib/toaster";
 import { Input } from "../../components/Input";
 import { ScreenFitCard } from "../../components/ScreenFitCard";
 import { useMyStore } from "../../modules/me/index";
 
 import appStyle from "../../style/appStyle";
+
+type PropsType = {
+  navigation: NavigationProp<any>;
+};
 
 const styles = StyleSheet.create({
   areaView: {
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export function SignIn({ navigation }) {
+export function SignIn(props: PropsType) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading } = useMyStore();
@@ -72,7 +77,7 @@ export function SignIn({ navigation }) {
   };
 
   const signUp = () => {
-    navigation.navigate("SignUp");
+    props.navigation.navigate("SignUp");
   };
 
   return (
