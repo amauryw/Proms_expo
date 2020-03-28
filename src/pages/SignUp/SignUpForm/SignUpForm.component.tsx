@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
 
 export const SignUpForm = (props: PropsType) => (
   <Formik
+    initialValues={{}}
     onSubmit={values => props.onSubmit(values)}
     validationSchema={validationSchema}
     render={props => {
@@ -84,6 +85,8 @@ export const SignUpForm = (props: PropsType) => (
               />
             </View>
             <View style={styles.buttonContainer}>
+              {/* 
+              // @ts-ignore */}
               <TouchableOpacity onPress={props.handleSubmit} title="SUBMIT">
                 <Text style={styles.buttonText}>Valider</Text>
               </TouchableOpacity>

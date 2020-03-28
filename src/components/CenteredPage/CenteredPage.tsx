@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 type PropsType = {};
 
@@ -10,12 +10,12 @@ class CenteredPage extends React.Component<PropsType> {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   centerEverything: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-};
+});
 
 export default CenteredPage;

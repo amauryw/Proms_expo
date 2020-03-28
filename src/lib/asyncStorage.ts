@@ -6,6 +6,7 @@ export const setItem = async (
 ): Promise<void> => {
   switch (typeof item) {
     case typeof "string":
+      // @ts-ignore, item is string
       await AsyncStorage.setItem(key, item);
       break;
     case typeof {}:
@@ -13,7 +14,7 @@ export const setItem = async (
       break;
     case undefined:
     case null:
-      AsyncStorage.setItem(key, item);
+      AsyncStorage.setItem(key, null);
       break;
     default:
       console.log(

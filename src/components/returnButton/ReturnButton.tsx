@@ -1,10 +1,10 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from "@expo/vector-icons/AntDesign";
 import appStyle from "../../style/appStyle";
 
 type PropsType = {
-  onPress: Function;
+  onPress: any;
 };
 
 const styles = StyleSheet.create({

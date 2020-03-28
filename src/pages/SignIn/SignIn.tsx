@@ -77,7 +77,7 @@ export const SignIn = props => {
   };
 
   const signUp = () => {
-    props.navigation.navigate("signUp");
+    props.navigation.navigate("SignUp");
   };
 
   return (
