@@ -1,4 +1,5 @@
 import { AsyncStorage } from "react-native";
+import { UserType } from "../modules/me/me.type";
 
 export const setItem = async (
   key: string,
@@ -24,10 +25,12 @@ export const setItem = async (
   }
 };
 
-export const getItem = async (
+type AsyncStorageReturn = UserType | string | null;
+
+export const getItem = async <T extends AsyncStorageReturn>(
   key: string,
   typeExemple: "string" | "object"
-): Promise<any> => {
+): Promise<T> => {
   try {
     switch (typeExemple) {
       case "string":
@@ -46,3 +49,6 @@ export const getItem = async (
     });
   }
 };
+
+export const removeItem = async (key: string): Promise<void> =>
+  AsyncStorage.removeItem(key);

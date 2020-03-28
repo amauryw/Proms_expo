@@ -1,4 +1,6 @@
-const ClemData = {
+import { UserType } from "./me.type";
+
+const ClemData: UserType = {
   id: "userId",
   nom: "Bouchet",
   prenom: "Clement",
@@ -11,7 +13,7 @@ const ClemData = {
   activite: "Dev"
 };
 
-const getFakeData = name => {
+const getFakeData = (name: string): Promise<UserType> => {
   switch (name) {
     case "Clement":
       return Promise.resolve(ClemData);
@@ -20,5 +22,5 @@ const getFakeData = name => {
   }
 };
 
-export const postLogin = async name =>
+export const postLogin = async (name: string): Promise<UserType> =>
   new Promise(resolve => setTimeout(() => resolve(getFakeData(name)), 300));

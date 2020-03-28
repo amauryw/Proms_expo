@@ -10,19 +10,15 @@ import { toaster } from "../../lib/toaster";
 import SafeAreaView from "react-native-safe-area-view";
 import { Input } from "../../components/Input";
 import { ScreenFitCard } from "../../components/ScreenFitCard";
-import { useMyStore } from "../../modules/me";
+import { useMyStore } from "../../modules/me/index";
 
 import appStyle from "../../style/appStyle";
-
-type PropsType = {
-  navigation: NavigationType;
-};
 
 const styles = StyleSheet.create({
   areaView: {
     flex: 1,
     backgroundColor: appStyle.color.primary,
-    justifyContent: 'center'
+    justifyContent: "center"
   },
   titleContainer: {
     marginTop: 30,
@@ -62,7 +58,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export const SignIn = props => {
+export function SignIn({ navigation }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading } = useMyStore();
@@ -70,14 +66,13 @@ export const SignIn = props => {
   const tryLogin = async () => {
     try {
       await login(name, password);
-      props.navigation.navigate("account");
     } catch (error) {
       toaster("Le login a échoué");
     }
   };
 
   const signUp = () => {
-    props.navigation.navigate("SignUp");
+    navigation.navigate("SignUp");
   };
 
   return (
@@ -119,4 +114,4 @@ export const SignIn = props => {
       </ScreenFitCard>
     </SafeAreaView>
   );
-};
+}
