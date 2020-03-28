@@ -8,7 +8,7 @@ import isNil from "lodash/isNil";
 import { useMyStore } from "./modules/me/me.hooks";
 import { UserType } from "./modules/me/me.type";
 import { AppLoading } from "./pages/AppLoading";
-import { Tmp } from "./pages/tmp";
+import { Tabs } from "./pages/Tabs";
 
 const Stack = createStackNavigator();
 
@@ -43,7 +43,7 @@ export function Navigation() {
             <Stack.Screen name="SignUp" component={SignUp} />
           </>
         ) : (
-          <Stack.Screen name="account" component={Tmp} />
+          <Stack.Screen name="tab" component={Tabs} />
         )}
       </Stack.Navigator>
     </NavigationContainer>

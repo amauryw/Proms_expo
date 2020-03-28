@@ -7,5 +7,6 @@ export type UserType = {
   email: string;
   telephone: string;
   solde: number;
-  lieu:string;
+  lieu: string;
   activite: string;
+};

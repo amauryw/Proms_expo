@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: appStyle.color.secondary,
     height: CARD_HEIGHT,
     borderRadius: 5,
-    flexDirection: 'row',
+    flexDirection: "row",
     flex: 1,
     marginVertical: 5,
     marginHorizontal: 5
@@ -63,18 +63,18 @@ const styles = StyleSheet.create({
   },
   monthContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center"
   },
   monthText: {
     fontSize: 11,
     fontWeight: "500",
     color: "white"
   },
-  dayContainer: { 
+  dayContainer: {
     flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 10
   },
   dayText: {
