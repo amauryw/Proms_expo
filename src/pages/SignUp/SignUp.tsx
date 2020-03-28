@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import { SignUpForm } from "./SignUpForm";
 import { SignUpFormType } from "./SignUp.type";
-import { ReturnButton } from "../../components/returnButton/ReturnButton";
+import { ReturnButton } from "../../components/ReturnButton/ReturnButton";
 import { ScreenFitCard } from "../../components/ScreenFitCard";
 import appStyle from "../../style/appStyle";
 import { NavigationProp } from "@react-navigation/native";
