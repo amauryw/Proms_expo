@@ -37,6 +37,12 @@ export function Tabs() {
           if (route.name === "account") {
             iconName = "assignment";
           }
+          else if (route.name === "newsfeed"){
+            iconName = "alarm";
+          }
+          else if (route.name === 'profile'){
+            iconName = "face";
+          }
           return renderTabIcon(iconName, color);
         }
       })}
