@@ -1,7 +1,7 @@
 // for now the call are fake unntil we install the api
 
 export function getUser() {
-  const text = fetch("http://192.168.43.106:8888/").then(response =>
+  const text = fetch("https://amauryw.builtwithdark.com/user").then(response =>
     response.json()
   );
   return text;

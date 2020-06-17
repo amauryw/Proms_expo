@@ -6,6 +6,7 @@ import { OperationLine } from "../../components/OperationLine/OperationLine";
 import { Svg, Path, LinearGradient, Defs, Stop } from "react-native-svg";
 import * as shape from "d3-shape";
 import { scaleTime, scaleLinear } from "d3-scale";
+import moment from "moment";
 
 type PropsType = {};
 
@@ -17,13 +18,47 @@ const { width } = Dimensions.get("window");
 const height = 140;
 const verticalPadding = 5;
 
-const data = [
-  { x: new Date(2019, 9, 1), y: 0 },
-  { x: new Date(2019, 9, 16), y: 0 },
-  { x: new Date(2019, 9, 17), y: 200 },
-  { x: new Date(2019, 10, 1), y: 200 },
-  { x: new Date(2019, 10, 2), y: 300 },
-  { x: new Date(2019, 10, 4), y: 300 }
+const getAccountValue = (operation: IOperationFromDB[], date: Date): number =>
+  operation.reduce((acc: number, curr: IOperationFromDB) => {
+    if (moment(curr.created_at).isAfter(moment(date))) return acc;
+    return acc + curr.value;
+  }, 0);
+
+const formatOperationToLine = (operations: IOperationFromDB[]): IData[] =>
+  operations.map(operation => ({
+    x: operation.created_at,
+    y: getAccountValue(operations, operation.created_at)
+  }));
+
+const fakeOperations = [
+  {
+    id: 0,
+    description: "Wix de proms", // "Paiement fignss"  "Remboursement manip" "cotisation"
+    user_id: 12,
+    created_at: new Date(2019, 9, 1),
+    value: 100
+  },
+  {
+    id: 1,
+    description: "Wix de proms", // "Paiement fignss"  "Remboursement manip" "cotisation"
+    user_id: 12,
+    created_at: new Date(2019, 9, 16),
+    value: -10
+  },
+  {
+    id: 2,
+    description: "Wix de proms", // "Paiement fignss"  "Remboursement manip" "cotisation"
+    user_id: 12,
+    created_at: new Date(2019, 9, 17),
+    value: 59
+  },
+  {
+    id: 3,
+    description: "Wix de proms", // "Paiement fignss"  "Remboursement manip" "cotisation"
+    user_id: 12,
+    created_at: new Date(2019, 10, 2),
+    value: 90
+  }
 ];
 
 const scaleX = scaleTime()
@@ -32,6 +67,9 @@ const scaleX = scaleTime()
 const scaleY = scaleLinear()
   .domain([0, 300])
   .range([height - verticalPadding, verticalPadding]);
+
+const data = formatOperationToLine(fakeOperations);
+
 const line = d3.shape
   .line()
   // @ts-ignore
@@ -41,8 +79,30 @@ const line = d3.shape
   // @ts-ignore
   .curve(d3.shape.curveBasis)(data);
 
+interface IOperationFromDB {
+  id: number;
+  description: string; // "Paiement fignss"  "Remboursement manip" "cotisation"
+  user_id: number;
+  created_at: Date;
+  value: number; // "100" ou "-100"
+}
+
+interface IOperation {
+  amount: string;
+  date: Date;
+  operation: string;
+}
+
+interface IData {
+  x: Date; // Date de check
+  y: number; // Valeur de compte a l'instant x
+
+  // la somme de tous les évenements SUM(value) pour un user_id ou created_at < x
+}
+
 export const Account = (props: PropsType) => {
   const { me } = useMyStore();
+
   return (
     <View style={styles.container}>
       {/*
@@ -52,7 +112,7 @@ export const Account = (props: PropsType) => {
         <Text style={styles.welcomeText}>Sal's {me.bucque}!</Text>
       </View>
       <View style={styles.balanceContainer}>
-        <Text style={styles.balanceText}>{me.solde}€</Text>
+        <Text style={styles.balanceText}>{getAccountValue(fakeOperations, new Date())}€</Text>
       </View>
       <View style={styles.chartContainer}>
         <Svg {...{ width, height }}>
@@ -70,26 +130,13 @@ export const Account = (props: PropsType) => {
         </Svg>
       </View>
       <ScrollView style={styles.scrollContainer}>
-        <OperationLine
-          operation="Wix de proms"
-          date="28 septembre 2019"
-          amount="-100€"
-        />
-        <OperationLine
-          operation="Top-up by Lydia"
-          date="10 août 2019"
-          amount="+80€"
-        />
-        <OperationLine
-          operation="Cotiz 2018-2019"
-          date="1er Juin 2019"
-          amount="-90€"
-        />
-        <OperationLine
-          operation="Fignoss 2018"
-          date="23 Novembre 2018"
-          amount="-122,5€"
-        />
+        {fakeOperations.map(operation => (
+          <OperationLine
+            operation={operation.description}
+            date={operation.created_at.toString()}
+            amount={operation.value.toString()}
+          />
+        ))}
       </ScrollView>
     </View>
   );
